@@ -1,5 +1,5 @@
 server:
-  port: 10011
+  port: 10012
 mybatis:
   mapper-locations: classpath*:/mapping/*.xml
 spring:
@@ -12,7 +12,7 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
   application:
-    name: UserProvider
+    name: StractionProvider
 eureka:
   client:
     serviceUrl:

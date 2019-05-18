@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.love.straction.dao.StrActionMapper" >
+  <resultMap id="BaseResultMap" type="com.love.fun_entity.user.StrAction" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+    <result column="actionnum" property="actionnum" jdbcType="INTEGER" />
+    <result column="whilenum" property="whilenum" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="INTEGER" />
+    <result column="level" property="level" jdbcType="VARCHAR" />
+    <result column="placeid" property="placeid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, picture, actionnum, whilenum, time, level, placeid
+  </sql>
+
+  <!--加强训练按部位查询-->
+  <select id="selectStrActionList" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM straction WHERE straction.placeid= #{placeid}
+  </select>
+
+  <!--自由训练大纲模糊查询-->
+  <select id="selectStrActionLike" resultMap="BaseResultMap" >
+    SELECT <include refid="Base_Column_List" /> FROM straction
+    WHERE 1=1
+    <if test="placeid != null" >
+      and placeid = #{placeid}
+    </if>
+    <if test="timemin != null" >
+      and time  between ${timemin} and ${timemax}
+    </if>
+    <if test="level != null" >
+      and `level` = #{level}
+    </if>
+  </select>
+
+  <!--点击加强训练大纲查看加强训练视屏列表-->
+  <select id="selectStrVideoListById" resultType="com.love.fun_entity.user.StrVideoList" parameterType="java.lang.Integer">
+        SELECT sa.id,sa.`name` ,sab.ab,p.place,sp.percentage, sl.id videoid,sl.picture,sl.`name` videoname,sl.num,sl.rest,sab.instrument,sab.notice
+  FROM straction sa
+  INNER JOIN strab sab
+  ON sa.id=sab.id
+  INNER JOIN strplace sp
+  ON sa.placeid=sp.id
+  INNER JOIN place p
+  ON sp.placeid=p.id
+  INNER JOIN strvideolist sl
+  ON sa.id=sl.typeid
+  WHERE sa.id=#{actionid}
+  </select>
+
+  <!--根据视频列表id得到具体视频-->
+  <select id="selectStrVideoById" resultType="com.love.fun_entity.user.StrVideo" parameterType="java.lang.Integer">
+    SELECT * FROM strvideo WHERE id=#{strvideoid}
+  </select>
+</mapper>

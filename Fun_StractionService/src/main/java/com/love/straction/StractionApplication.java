@@ -1,4 +1,4 @@
-package com.love.fun_serveruser;
+package com.love.straction;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -6,12 +6,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @SpringBootApplication
-@EnableEurekaClient  //标记这是一个服务提供者
-@MapperScan("com.love.fun_serveruser.dao")
-public class FunServeruserApplication {
+@EnableEurekaClient
+@MapperScan("com.love.straction.dao")
+public class StractionApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FunServeruserApplication.class, args);
+		SpringApplication.run(StractionApplication.class, args);
 	}
 
 }

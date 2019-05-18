@@ -8,6 +8,7 @@
 		<module>Fun_EurekaServer</module>
 		<module>Fun_ServerUser</module>
 		<module>Fun_SportApi</module>
+		<module>Fun_StractionService</module>
 	</modules>
 
 	<parent>
@@ -52,7 +53,6 @@
 		</dependency>
 
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>

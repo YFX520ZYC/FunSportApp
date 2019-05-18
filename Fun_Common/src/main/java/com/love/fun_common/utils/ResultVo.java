@@ -1,21 +1,11 @@
-package com.love.fun_common.vo;
+package com.love.fun_common.utils;
 
-/**
- *@Author feri
- *@Date Created in 2019/4/28 17:27
- */
-public class ResultVO {
+import java.io.Serializable;
+
+public class ResultVo implements Serializable {
     private int code;
     private String msg;
     private Object data;
-    public ResultVO() {
-    }
-
-    public ResultVO(int code, String msg, Object data) {
-        this.code = code;
-        this.msg = msg;
-        this.data = data;
-    }
 
     public int getCode() {
         return code;
@@ -40,7 +30,4 @@ public class ResultVO {
     public void setData(Object data) {
         this.data = data;
     }
-
-
-
 }
